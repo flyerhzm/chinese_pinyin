@@ -11,6 +11,9 @@ The dict is borrowed from http://github.com/fayland/perl-lingua-han/tree/master/
 ## Usage
 
 <pre><code>
+require 'rubygems'
+require 'chinese_pinyin'
+
 Pinyin.t('中国')  => "zhong guo"
 Pinyin.t('中国', '-') => "zhong-guo"
 Pinyin.t('中国', '') => "zhongguo"

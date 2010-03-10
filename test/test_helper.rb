@@ -1,3 +1,3 @@
 require 'rubygems'
 require 'test/unit'
-require File.join(File.dirname(__FILE__) + '/../lib/pinyin')
+require File.join(File.dirname(__FILE__) + '/../lib/chinese_pinyin')

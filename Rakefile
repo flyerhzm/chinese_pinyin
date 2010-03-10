@@ -31,5 +31,6 @@ Jeweler::Tasks.new do |gemspec|
   gemspec.email = 'flyerhzm@gmail.com'
   gemspec.homepage = 'http://github.com/flyerhzm/chinese_pinyin'
   gemspec.authors = ['Richard Huang']
+  gemspec.files.exclude '.gitignore'
 end
 Jeweler::GemcutterTasks.new
