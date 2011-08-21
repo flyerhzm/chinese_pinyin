@@ -1,4 +1,4 @@
-$KCODE = 'u'
+# -*- encoding : utf-8 -*-
 
 class Pinyin
   
