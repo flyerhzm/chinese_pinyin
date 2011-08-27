@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+$KCODE = 'u' if RUBY_VERSION !~ /1\.9/
 
 class Pinyin
   
