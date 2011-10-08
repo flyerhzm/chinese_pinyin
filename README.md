@@ -1,21 +1,40 @@
-# ChinesePinyin
+ChinesePinyin
+=============
 
 Translate chinese hanzi to pinyin.
 
-The dict is borrowed from http://github.com/fayland/perl-lingua-han/tree/master/Lingua-Han-PinYin/
+The dict is borrowed from <http://github.com/fayland/perl-lingua-han/tree/master/Lingua-Han-PinYin/>
 
-## Install
+Install
+-------
 
-<pre><code>sudo gem install chinese_pinyin</code></pre>
+    sudo gem install chinese_pinyin
 
-## Usage
+Usage
+-----
 
-<pre><code>
-require 'rubygems'
-require 'chinese_pinyin'
+    require 'rubygems'
+    require 'chinese_pinyin'
 
-Pinyin.t('中国')  => "zhong guo"
-Pinyin.t('中国', '-') => "zhong-guo"
-Pinyin.t('中国', '') => "zhongguo"
-Pinyin.t('你好world') => "ni hao world"
-</code></pre>
+    Pinyin.t('中国')  => "zhong guo"
+    Pinyin.t('中国', '-') => "zhong-guo"
+    Pinyin.t('中国', '') => "zhongguo"
+    Pinyin.t('你好world') => "ni hao world"
+
+Polyphone Issue
+---------------
+
+use Words.dat to override default behavior.
+
+by default
+
+    Pinyin.t('广州') => "yan zhou"
+
+add file Words.dat
+
+    广州|guang zhou
+
+set ENV['WORDS_FILE'] for Words.dat
+
+    ENV['WORDS_FILE'] = "Words.dat path"
+    Pinyin.t('广州') => "guang zhou"
