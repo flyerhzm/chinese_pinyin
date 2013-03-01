@@ -1,8 +1,29 @@
-require 'rake'
+$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
+require "bundler"
+Bundler.setup
+
+require "rake"
 require 'rake/testtask'
-require 'rdoc/task'
-require 'rubygems'
-require 'jeweler'
+require "rdoc/task"
+
+require "chinese_pinyin/version"
+
+task :build do
+  system "gem build chinese_pinyin.gemspec"
+end
+
+task :install => :build do
+  system "sudo gem install chinese_pinyin-#{ChinesePinyin::VERSION}.gem"
+end
+
+task :release => :build do
+  puts "Tagging #{ChinesePinyin::VERSION}..."
+  system "git tag -a #{ChinesePinyin::VERSION} -m 'Tagging #{ChinesePinyin::VERSION}'"
+  puts "Pushing to Github..."
+  system "git push --tags"
+  puts "Pushing to rubygems.org..."
+  system "gem push chinese_pinyin-#{ChinesePinyin::VERSION}.gem"
+end
 
 desc 'Default: run unit tests.'
 task :default => :test
@@ -23,14 +44,3 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
-Jeweler::Tasks.new do |gemspec|
-  gemspec.name = 'chinese_pinyin'
-  gemspec.summary = 'translate chinese hanzi to pinyin.'
-  gemspec.description = 'translate chinese hanzi to pinyin.'
-  gemspec.email = 'flyerhzm@gmail.com'
-  gemspec.homepage = 'http://github.com/flyerhzm/chinese_pinyin'
-  gemspec.authors = ['Richard Huang']
-  gemspec.files.exclude '.gitignore'
-end
-Jeweler::GemcutterTasks.new

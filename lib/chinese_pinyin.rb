@@ -1,8 +1,9 @@
-# -*- encoding : utf-8 -*-
+# coding: utf-8
 $KCODE = 'u' if RUBY_VERSION =~ /1\.8/
 
-class Pinyin
+require 'chinese_pinyin/version'
 
+class Pinyin
   class <<self
     attr_accessor :table
 
