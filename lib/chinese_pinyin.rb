@@ -31,7 +31,10 @@ class Pinyin
       end
     end
 
-    def translate(chars, splitter = ' ')
+    def translate(chars, options={})
+      splitter = options[:splitter] || ' '
+      tone = options[:tone] || false
+
       init_word_table
       return @words_table[chars].gsub(' ', splitter) if @words_table[chars]
 
@@ -42,7 +45,9 @@ class Pinyin
         key = sprintf("%X", char.unpack("U").first)
         if @table[key]
           results << splitter if is_english
-          results << @table[key].chomp.split(' ', 2)[0].slice(0..-2).downcase
+          pinyin = @table[key].chomp.split(' ', 2)[0].downcase
+          pinyin.chop! unless tone
+          results << pinyin
           results << splitter
           is_english = false
         else
