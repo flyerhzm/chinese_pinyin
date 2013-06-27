@@ -17,9 +17,10 @@ Usage
     require 'chinese_pinyin'
 
     Pinyin.t('中国')  => "zhong guo"
-    Pinyin.t('中国', '-') => "zhong-guo"
-    Pinyin.t('中国', '') => "zhongguo"
     Pinyin.t('你好world') => "ni hao world"
+    Pinyin.t('中国', splitter: '-') => "zhong-guo"
+    Pinyin.t('中国', splitter: '') => "zhongguo"
+    Pinyin.t('中国', tone: true) => "zhong1 guo2"
 
 Polyphone Issue
 ---------------
@@ -32,7 +33,7 @@ by default
 
 add file Words.dat
 
-    广州|guang zhou
+    广州|guang3 zhou1
 
 set ENV['WORDS_FILE'] for Words.dat
 
