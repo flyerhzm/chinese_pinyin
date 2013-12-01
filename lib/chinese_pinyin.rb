@@ -74,9 +74,13 @@ class Pinyin
 
           results << pinyin
           results << splitter
-
         else
-          results << char
+          if char =~ /[a-zA-Z0-9]/
+            results << char
+          elsif results.last != splitter
+            results << splitter
+          else
+          end
           is_english = true
         end
       end

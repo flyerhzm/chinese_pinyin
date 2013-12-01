@@ -34,4 +34,8 @@ class PinyinTest < Test::Unit::TestCase
     assert_equal("Shang-Hai", Pinyin.t('上海', camelcase: true, splitter: '-'))
     assert_equal("Shang4-Hai3", Pinyin.t('上海', camelcase: true, tone:true, splitter: '-'))
   end
+
+  def test_t_with_chinese_punctuation
+    assert_equal("ce-shi-yi-xia-Think-diff", Pinyin.t('测试一下，Think diff', splitter: '-'))
+  end
 end
