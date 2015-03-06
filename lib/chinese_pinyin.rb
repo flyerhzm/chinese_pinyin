@@ -85,7 +85,7 @@ class Pinyin
           if tonemarks
             tone_index = pinyin[-1].to_i
             pinyin = pinyin[0...-1]
-            %w(a e i o u v).each { |v|
+            %w(a o e i u v).each { |v|
               break if pinyin.tr! v, TONE_MARK[v.to_sym][tone_index]
             }
           end
