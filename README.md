@@ -21,6 +21,7 @@ Usage
     Pinyin.t('中国', splitter: '-') => "zhong-guo"
     Pinyin.t('中国', splitter: '') => "zhongguo"
     Pinyin.t('中国', tone: true) => "zhong1 guo2"
+    Pinyin.t('中国', tonemarks: true) => "zhōng guó"
 
 Polyphone Issue
 ---------------

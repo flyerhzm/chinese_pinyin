@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.name        = "chinese_pinyin"
   s.version     = ChinesePinyin::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Richard Huang", "Hong, Liang"]
-  s.email       = ["flyerhzm@gmail.com", "hongliang@bamajia.com"]
+  s.authors     = ["Richard Huang", "Hong, Liang", "cuihq"]
+  s.email       = ["flyerhzm@gmail.com", "hongliang@bamajia.com", "cuihaiqin@gmail.com"]
   s.homepage    = "http://github.com/flyerhzm/chinese_pinyin"
   s.summary     = "translate chinese hanzi to pinyin."
   s.description = "translate chinese hanzi to pinyin."

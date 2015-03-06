@@ -38,4 +38,9 @@ class PinyinTest < Test::Unit::TestCase
   def test_t_with_chinese_punctuation
     assert_equal("ce-shi-yi-xia-Think-diff", Pinyin.t('测试一下，Think diff', splitter: '-'))
   end
+
+  def test_t_with_tonemarks
+    assert_equal('zhōng guó', Pinyin.t('中国', tonemarks: true))
+    assert_equal('běi jīng', Pinyin.t('北京', tonemarks: true))
+  end
 end
