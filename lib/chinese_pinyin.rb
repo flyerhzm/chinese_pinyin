@@ -50,10 +50,10 @@ class Pinyin
     end
 
     def translate(chars, options={})
-      splitter = options.fetch(:splitter, ' ')
-      tonemarks= options.fetch(:tonemarks, false)
-      tone     = options.fetch(:tone, false || tonemarks)
-      camel    = options.fetch(:camelcase, false)
+      splitter  = options.fetch(:splitter, ' ')
+      tonemarks = options.fetch(:tonemarks, false)
+      tone      = options.fetch(:tone, false || tonemarks)
+      camel     = options.fetch(:camelcase, false)
 
       init_word_table
       results = @words_table[chars]
