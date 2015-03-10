@@ -4,6 +4,16 @@ $KCODE = 'u' if RUBY_VERSION =~ /1\.8/
 require 'chinese_pinyin/version'
 
 class Pinyin
+
+  TONE_MARK = {
+    a: %w(a ā á ǎ à),
+    o: %w(o ō ó ǒ ò),
+    e: %w(e ē é ě è),
+    i: %w(i ī í ǐ ì),
+    u: %w(u ū ú ǔ ù),
+    v: %w(ü ǖ ǘ ǚ ǜ)
+  }
+
   class <<self
     attr_accessor :table
     attr_accessor :ruby2
@@ -40,9 +50,10 @@ class Pinyin
     end
 
     def translate(chars, options={})
-      splitter = options.fetch(:splitter, ' ')
-      tone     = options.fetch(:tone, false)
-      camel    = options.fetch(:camelcase, false)
+      splitter  = options.fetch(:splitter, ' ')
+      tonemarks = options.fetch(:tonemarks, false)
+      tone      = options.fetch(:tone, false || tonemarks)
+      camel     = options.fetch(:camelcase, false)
 
       init_word_table
       results = @words_table[chars]
@@ -71,6 +82,13 @@ class Pinyin
           pinyin.downcase! unless @ruby2
           pinyin.chop! unless tone
           pinyin.capitalize! if camel
+          if tonemarks
+            tone_index = pinyin[-1].to_i
+            pinyin = pinyin[0...-1]
+            %w(a o e i u v).each { |v|
+              break if pinyin.tr! v, TONE_MARK[v.to_sym][tone_index]
+            }
+          end
 
           results << pinyin
           results << splitter
