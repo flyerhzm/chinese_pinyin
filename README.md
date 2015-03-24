@@ -22,6 +22,8 @@ Usage
     Pinyin.t('中国', splitter: '') => "zhongguo"
     Pinyin.t('中国', tone: true) => "zhong1 guo2"
     Pinyin.t('中国', tonemarks: true) => "zhōng guó"
+    Pinyin.t('北京') { |letters, i| letters[0].upcase } => 'BJ'
+    Pinyin.t('北京') { |letters, i| letters[0].upcase if i == 0 } => 'B'
 
 Polyphone Issue
 ---------------

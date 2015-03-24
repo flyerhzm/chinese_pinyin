@@ -89,9 +89,12 @@ class Pinyin
               break if pinyin.tr! v, TONE_MARK[v.to_sym][tone_index]
             }
           end
-
-          results << pinyin
-          results << splitter
+          if block_given?
+            results << (yield pinyin, results.size)
+          else
+            results << pinyin
+            results << splitter
+          end
         else
           if char =~ /[a-zA-Z0-9]/
             results << char

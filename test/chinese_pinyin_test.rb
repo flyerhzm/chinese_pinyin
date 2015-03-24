@@ -43,4 +43,9 @@ class PinyinTest < Test::Unit::TestCase
     assert_equal('zhōng guó', Pinyin.t('中国', tonemarks: true))
     assert_equal('běi jīng', Pinyin.t('北京', tonemarks: true))
   end
+
+  def test_t_with_custom
+    assert_equal('BJ', Pinyin.t('北京') { |letters, i| letters[0].upcase } )
+    assert_equal('B', Pinyin.t('北京') { |letters, i| letters[0].upcase if i == 0 } )
+  end
 end
