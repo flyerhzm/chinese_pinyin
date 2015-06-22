@@ -14,7 +14,7 @@ gem install chinese_pinyin
 
 or add in Gemfile.
 
-```ruby
+```
 gem 'chinese_pinyin'
 ```
 
