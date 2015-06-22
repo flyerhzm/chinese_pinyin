@@ -6,12 +6,12 @@ require 'chinese_pinyin/version'
 class Pinyin
 
   TONE_MARK = {
-    a: %w(a ā á ǎ à),
-    o: %w(o ō ó ǒ ò),
-    e: %w(e ē é ě è),
-    i: %w(i ī í ǐ ì),
-    u: %w(u ū ú ǔ ù),
-    v: %w(ü ǖ ǘ ǚ ǜ)
+    a: %w(ā á ǎ à a),
+    o: %w(ō ó ǒ ò o),
+    e: %w(ē é ě è e),
+    i: %w(ī í ǐ ì i),
+    u: %w(ū ú ǔ ù u),
+    v: %w(ǖ ǘ ǚ ǜ ü)
   }
 
   class <<self
@@ -86,7 +86,7 @@ class Pinyin
             tone_index = pinyin[-1].to_i
             pinyin = pinyin[0...-1]
             %w(a o e i u v).each { |v|
-              break if pinyin.tr! v, TONE_MARK[v.to_sym][tone_index]
+              break if pinyin.tr! v, TONE_MARK[v.to_sym][tone_index - 1]
             }
           end
           if block_given?
