@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+
+require 'pry'
+require 'optparse'
+require 'chinese_pinyin'
+
+opts = {}
+
+parser = OptionParser.new do |opt|
+  opt.banner = "Usage: ch2py [opts]"
+
+  opt.on('-c', '--camelcase', 'Camelcase of each word') do
+    opts[:camelcase] = true
+  end
+
+  opt.on('-i', '--stdin', 'Read from stdard input') do
+    opts[:stdin] = true
+  end
+
+  opt.on('-t', '--tone', 'Show tone at end of word') do
+    opts[:tone] = true
+  end
+
+  opt.on('-m', '--tonemarks', 'Show tone at top of letter, this would cover -t option') do
+    opts[:tonemarks] = true
+  end
+
+  opt.on('-s', '--splitter <splitter>', 'Splitter of each word, use a space by default') do |sp|
+    opts[:splitter] = sp
+  end
+
+  opt.on('-v', '--version', 'Show version') do
+    puts "ch2py: Version #{ChinesePinyin::VERSION}"
+    exit
+  end
+
+  opt.on('-h', '--help', 'Show this help') do
+    puts parser
+    exit
+  end
+end
+
+parser.parse!
+
+args = parser.default_argv
+
+if opts.fetch(:stdin, false)
+  chars = STDIN.readline
+elsif args.empty?
+  raise OptionParser::MissingArgument
+else
+  chars = args.join('')
+end
+
+STDOUT.puts Pinyin.t(chars, opts)
