@@ -50,6 +50,7 @@ class Pinyin
     end
 
     def translate(chars, options={})
+      chars     = chars.force_encoding("UTF-8")
       splitter  = options.fetch(:splitter, ' ')
       tonemarks = options.fetch(:tonemarks, false)
       tone      = options.fetch(:tone, false || tonemarks)
