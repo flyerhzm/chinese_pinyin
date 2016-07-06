@@ -26,7 +26,7 @@ class Pinyin
       datfile = @ruby2 ? 'pinyin-utf8.dat' : 'Mandarin.dat'
       @table  = {}
 
-      File.open(File.dirname(__FILE__) + "/../data/#{datfile}") do |file|
+      File.open(File.dirname(__FILE__) + "/../data/#{datfile}", "r:UTF-8",) do |file|
         while line = file.gets
           key, value  = line.split(' ', 2)
           @table[key] = value
@@ -50,6 +50,7 @@ class Pinyin
     end
 
     def translate(chars, options={})
+      chars     = chars.force_encoding("UTF-8")
       splitter  = options.fetch(:splitter, ' ')
       tonemarks = options.fetch(:tonemarks, false)
       tone      = options.fetch(:tone, false || tonemarks)
