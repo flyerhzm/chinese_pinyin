@@ -10,6 +10,11 @@ class PinyinTest < Test::Unit::TestCase
     assert_equal("shang hai very good o ye", Pinyin.t('上海very good哦耶'))
   end
 
+  def test_t_with_frozen_string
+    assert_equal("zhong guo", Pinyin.t('中国'.freeze))
+    assert_equal("shen zhen", Pinyin.t('深圳'.freeze))
+  end
+
   def test_t_with_splitter
     assert_equal("zhong-guo", Pinyin.t('中国', splitter: '-'))
     assert_equal("huangzhimin", Pinyin.t('黄志敏', splitter: ''))
