@@ -16,17 +16,18 @@ class Pinyin
 
   class <<self
     attr_accessor :table
-    attr_accessor :ruby2
+    attr_accessor :ruby1
 
     def init_table
       return if @table
 
       # Ruby 2.0以后默认即为UTF-8编码，使用新的码表以提升效率
-      @ruby2  = !!(RUBY_VERSION =~ /^2/)
-      datfile = @ruby2 ? 'pinyin-utf8.dat' : 'Mandarin.dat'
+      @ruby1  = !!(RUBY_VERSION =~ /^1/)
+      datfile = @ruby1 ? 'Mandarin.dat' : 'pinyin-utf8.dat'
       @table  = {}
 
-      File.open(File.dirname(__FILE__) + "/../data/#{datfile}", "r:UTF-8",) do |file|
+      file = File.join(File.dirname(__FILE__), "../data/#{datfile}")
+      File.open(file, "r:UTF-8",) do |file|
         while line = file.gets
           key, value  = line.split(' ', 2)
           @table[key] = value
@@ -72,7 +73,7 @@ class Pinyin
       is_english = false
 
       chars.scan(/./).each do |char|
-        key = @ruby2 ? char : sprintf("%X", char.unpack("U").first)
+        key = @ruby1 ? sprintf("%X", char.unpack("U").first) : char
 
         if @table[key]
           results << splitter if is_english
@@ -80,7 +81,7 @@ class Pinyin
           is_english = false
           pinyin     = @table[key].chomp.split(' ', 2)[0]
 
-          pinyin.downcase! unless @ruby2
+          pinyin.downcase! if @ruby1
           pinyin.chop! unless tone
           pinyin.capitalize! if camel
           if tonemarks
