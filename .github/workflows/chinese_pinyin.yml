@@ -1,0 +1,26 @@
+name: Chinese Pinyin
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+  
+  push:
+    branches:
+      - 'ruby3-support'
+      - 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: ['2.1', '2.5', '2.6', '2.7', '3.0']
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+    - name: Build and test with Rake
+      run: |
+        rake test
