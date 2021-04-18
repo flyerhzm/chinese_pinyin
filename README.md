@@ -1,6 +1,6 @@
 # ChinesePinyin
 
-[![Build Status](https://secure.travis-ci.org/flyerhzm/chinese_pinyin.png)](http://travis-ci.org/flyerhzm/chinese_pinyin)
+[![Chinese Pinyin](https://github.com/flyerhzm/chinese_pinyin/actions/workflows/chinese_pinyin.yml/badge.svg)](https://github.com/flyerhzm/chinese_pinyin/actions/workflows/chinese_pinyin.yml)
 
 Translate chinese hanzi to pinyin.
 
